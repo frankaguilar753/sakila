@@ -4,6 +4,10 @@
     Author     : Koyomi
 --%>
 
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="bd.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,5 +17,16 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <%!
+            Connection conn1=null;
+            Statement stmt=null;
+            ResultSet rs=null;
+            %>
+        <%
+             conn1 =Conexion.getConnection();
+             stmt = conn1.createStatement();
+                          
+
+        %>
     </body>
 </html>
