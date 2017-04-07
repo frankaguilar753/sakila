@@ -9,23 +9,37 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="bd.Conexion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
         <%!
             Connection conn1=null;
             Statement stmt=null;
             ResultSet rs=null;
+                       
+            
+        
             %>
-        <%
-             conn1 =Conexion.getConnection();
-             stmt = conn1.createStatement();
-                          
+            <%
+            conn1 =Conexion.getConnection();
+            try{
+            stmt = conn1.createStatement();
+            rs =stmt.executeQuery("SELECT INVENTORY_IN_STOCK(10);");
+            
+            }catch(Exception e){
+                
+            }
+          
+
+              while(rs.next()){
+                 out.println("k");
+              }            
 
         %>
     </body>

@@ -8,41 +8,47 @@ package bd;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import static java.util.logging.Level.SEVERE;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Koyomi
  */
 public class Conexion{
-        static String user="root";
-        static String pass="";
-        static String bbdd="sakila";
-        static String ipServer="localhost";
-        static String urlCon="jdbc:mysql://"+ipServer+"/"+bbdd;
 
-        static Connection conn;
+        private static Connection conn=null;
 
         public static Connection getConnection(){
-        if(conn==null){
-        try
-        {
-        Class.forName("com.mysql.jdbc.Driver");
-        } catch (Exception e)
-        {
-        e.printStackTrace();
-        }
-        try {
-        conn=DriverManager.getConnection(urlCon,user, pass);
-        } catch (SQLException ex) {
+            if(conn==null){
+                try
+                {
+                Class.forName("com.mysql.jdbc.Driver");
+                conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1/sakila","root","");
+                } catch (Exception e)
+                {
+                    System.out.println("Conexion Mala");
+                    e.printStackTrace();
+                }
+            }
+            else{
+                try{
+                    if(conn.isClosed()){
+                        System.out.println("Conex cerrada");
+                    }else{
 
-        ex.printStackTrace();
+                    }
+                }catch(SQLException ex){
+                    //Logger.getLogger(Conexion.class.getName().log(Level.SEVERE,null,ex));
+                }
+
+
+           
+            }
+            
+             return conn;
         }
-        return conn;
-        }
-        else{
-        return conn;
-        }
-}
 
     
 }
