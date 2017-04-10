@@ -40,7 +40,7 @@ public class Conexion{
 
                     }
                 }catch(SQLException ex){
-                    //Logger.getLogger(Conexion.class.getName().log(Level.SEVERE,null,ex));
+                    Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex); 
                 }
 
 
